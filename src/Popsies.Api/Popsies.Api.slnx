@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="Gateway/Gateway.csproj" />
+    <Project Path="Popsies.Api.AppHost/Popsies.Api.AppHost.csproj" />
+    <Project Path="Popsies.Api.ServiceDefaults/Popsies.Api.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>
