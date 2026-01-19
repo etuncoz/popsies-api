@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Popsies.Modules.Identity.Core\Popsies.Modules.Identity.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Identity.Infrastructure\Popsies.Modules.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Identity.Contracts\Popsies.Modules.Identity.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Popsies.Modules.Social.Core\Popsies.Modules.Social.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Social.Infrastructure\Popsies.Modules.Social.Infrastructure.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Social.Contracts\Popsies.Modules.Social.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

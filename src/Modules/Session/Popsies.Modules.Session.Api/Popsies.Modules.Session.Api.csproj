@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Popsies.Modules.Session.Core\Popsies.Modules.Session.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Session.Infrastructure\Popsies.Modules.Session.Infrastructure.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Session.Contracts\Popsies.Modules.Session.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Identity\Popsies.Modules.Identity.Api\Popsies.Modules.Identity.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Quiz\Popsies.Modules.Quiz.Api\Popsies.Modules.Quiz.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Session\Popsies.Modules.Session.Api\Popsies.Modules.Session.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Social\Popsies.Modules.Social.Api\Popsies.Modules.Social.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\Popsies.Modules.Notification.Api\Popsies.Modules.Notification.Api.csproj" />
+    <ProjectReference Include="..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

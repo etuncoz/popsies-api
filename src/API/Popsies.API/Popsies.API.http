@@ -1,0 +1,279 @@
+@Popsies.API_HostAddress = http://localhost:5245
+@contentType = application/json
+
+# Variables to store tokens (will be set after login/register)
+@accessToken = your-access-token-here
+@refreshToken = your-refresh-token-here
+
+###############################################################################
+# Identity Module - Authentication Endpoints
+###############################################################################
+
+### 1. Register a new user
+# POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+# Creates a new user account in Keycloak and local database
+# Returns: userId, username with discriminator, email, and success message
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "zoc",
+  "email": "zoc@example.com",
+  "password": "SecurePass123!",
+  "confirmPassword": "SecurePass123!"
+}
+
+### 2. Register another user (for testing multiple users)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "bob",
+  "email": "bob@example.com",
+  "password": "SecurePass456!",
+  "confirmPassword": "SecurePass456!"
+}
+
+### 3. Register - Validation Error (password mismatch)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "charlie",
+  "email": "charlie@example.com",
+  "password": "SecurePass123!",
+  "confirmPassword": "DifferentPassword123!"
+}
+
+### 4. Register - Validation Error (weak password)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "dave",
+  "email": "dave@example.com",
+  "password": "weak",
+  "confirmPassword": "weak"
+}
+
+### 5. Register - Validation Error (invalid email)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "eve",
+  "email": "not-an-email",
+  "password": "SecurePass123!",
+  "confirmPassword": "SecurePass123!"
+}
+
+### 6. Register - Validation Error (username too short)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "ab",
+  "email": "short@example.com",
+  "password": "SecurePass123!",
+  "confirmPassword": "SecurePass123!"
+}
+
+###############################################################################
+# Login Endpoints
+###############################################################################
+
+### 7. Login with email
+# POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+# Authenticates via Keycloak and returns JWT tokens
+# Returns: userId, accessToken, refreshToken, expiresAt
+POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "zoc@example.com",
+  "password": "SecurePass123!",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 8. Login with username (username#discriminator format)
+# Note: Replace the discriminator with the actual value from registration response
+POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "zoc#0133",
+  "password": "SecurePass123!",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 9. Login - Invalid credentials (wrong password)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "alice@example.com",
+  "password": "WrongPassword123!",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 10. Login - User not found
+POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "nonexistent@example.com",
+  "password": "SecurePass123!",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 11. Login without device info (uses User-Agent header)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/login
+Content-Type: {{contentType}}
+
+{
+  "usernameOrEmail": "alice@example.com",
+  "password": "SecurePass123!"
+}
+
+###############################################################################
+# Token Refresh Endpoints
+###############################################################################
+
+### 12. Refresh access token
+# POST {{Popsies.API_HostAddress}}/api/identity/auth/refresh
+# Exchanges refresh token for new access token via Keycloak
+# Returns: new accessToken, new refreshToken, expiresAt
+POST {{Popsies.API_HostAddress}}/api/identity/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "{{refreshToken}}",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 13. Refresh - Invalid refresh token
+POST {{Popsies.API_HostAddress}}/api/identity/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "invalid-refresh-token-12345",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 14. Refresh - Expired refresh token
+# Note: Refresh tokens expire after 7 days
+POST {{Popsies.API_HostAddress}}/api/identity/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.expired.token",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+###############################################################################
+# Guest Account Endpoints
+###############################################################################
+
+### 15. Create a guest account
+# POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+# Creates temporary guest session (24 hours, local JWT, bypasses Keycloak)
+# Returns: guestId, accessToken, refreshToken, expiresAt
+POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+Content-Type: {{contentType}}
+
+{
+  "displayName": "GuestUser123",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 16. Create another guest (for testing)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+Content-Type: {{contentType}}
+
+{
+  "displayName": "TempPlayer",
+  "deviceInfo": "MobileApp/1.0"
+}
+
+### 17. Create guest - Validation Error (display name too short)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+Content-Type: {{contentType}}
+
+{
+  "displayName": "ab",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 18. Create guest - Validation Error (display name too long)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+Content-Type: {{contentType}}
+
+{
+  "displayName": "ThisDisplayNameIsWayTooLongAndExceedsTwentyCharacters",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+### 19. Create guest - Validation Error (empty display name)
+POST {{Popsies.API_HostAddress}}/api/identity/auth/guest
+Content-Type: {{contentType}}
+
+{
+  "displayName": "",
+  "deviceInfo": "PostmanClient/1.0"
+}
+
+###############################################################################
+# Protected Endpoints (require authentication)
+# Note: Add Authorization header with Bearer token for protected endpoints
+###############################################################################
+
+### 20. Example: Access protected endpoint with token
+# GET {{Popsies.API_HostAddress}}/api/some-protected-endpoint
+# Authorization: Bearer {{accessToken}}
+
+###############################################################################
+# Testing Scenarios & Notes
+###############################################################################
+
+# REGISTRATION FLOW:
+# 1. Register user (request #1) -> Get userId and username with discriminator
+# 2. User is created in both Keycloak and local database
+# 3. Account state is "Pending" until email is verified
+
+# LOGIN FLOW:
+# 1. Login with email or username#discriminator (requests #7 or #8)
+# 2. Keycloak validates credentials
+# 3. Receive accessToken and refreshToken
+# 4. accessToken expires after 60 minutes
+# 5. refreshToken expires after 7 days
+
+# GUEST FLOW:
+# 1. Create guest (request #15) -> Get guestId and tokens
+# 2. Guest tokens are local JWT (not from Keycloak)
+# 3. Guest expires after 24 hours
+# 4. Guest can convert to permanent user later
+
+# TOKEN REFRESH FLOW:
+# 1. When accessToken expires, use refreshToken (request #12)
+# 2. Old refreshToken is revoked, new tokens issued
+# 3. If refreshToken expires, user must login again
+
+# USERNAME DISCRIMINATOR:
+# - Usernames are Discord-style: displayName#0000
+# - Discriminator is automatically assigned (1-9999)
+# - Stored in Keycloak custom attributes
+# - Example: "alice#0001", "bob#0042"
+
+# KEYCLOAK INTEGRATION:
+# - All permanent users authenticate via Keycloak
+# - Passwords managed by Keycloak (PBKDF2)
+# - JWT tokens signed by Keycloak (RS256)
+# - Guest accounts bypass Keycloak (local HS256 tokens)
+
+# ERROR RESPONSES:
+# - 400 Bad Request: Validation errors
+# - 401 Unauthorized: Invalid credentials or token
+# - 404 Not Found: Resource not found
+# - 500 Internal Server Error: Server error
+
+###
