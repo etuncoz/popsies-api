@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Popsies.Modules.Identity.Core\Popsies.Modules.Identity.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Identity.Application\Popsies.Modules.Identity.Application.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Identity.Domain\Popsies.Modules.Identity.Domain.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
   </ItemGroup>

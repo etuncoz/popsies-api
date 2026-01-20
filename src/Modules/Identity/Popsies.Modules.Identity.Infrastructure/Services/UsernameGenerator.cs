@@ -1,6 +1,6 @@
-using Popsies.Modules.Identity.Core.Domain.ValueObjects;
-using Popsies.Modules.Identity.Core.Repositories;
-using Popsies.Modules.Identity.Core.Services;
+using Popsies.Modules.Identity.Application.Common.Repositories;
+using Popsies.Modules.Identity.Application.Common.Services;
+using Popsies.Modules.Identity.Domain.ValueObjects;
 using Popsies.Shared.Abstractions.Exceptions;
 using Popsies.Shared.Abstractions.Results;
 

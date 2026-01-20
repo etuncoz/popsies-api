@@ -1,9 +1,12 @@
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Popsies.Modules.Identity.Application.Common.Repositories;
+using Popsies.Modules.Identity.Application.UseCases.CreateGuest;
+using Popsies.Modules.Identity.Application.UseCases.Login;
+using Popsies.Modules.Identity.Application.UseCases.RefreshToken;
+using Popsies.Modules.Identity.Application.UseCases.Register;
 using Popsies.Modules.Identity.Contracts;
-using Popsies.Modules.Identity.Core.Commands;
-using Popsies.Modules.Identity.Core.Repositories;
-using Popsies.Shared.Abstractions.Commands;
 
 namespace Popsies.Modules.Identity.Api.Controllers;
 
@@ -11,12 +14,12 @@ namespace Popsies.Modules.Identity.Api.Controllers;
 [Route("api/identity/auth")]
 public sealed class AuthController : ControllerBase
 {
-    private readonly ICommandDispatcher _commandDispatcher;
+    private readonly ISender _sender;
     private readonly IUserRepository _userRepository;
 
-    public AuthController(ICommandDispatcher commandDispatcher, IUserRepository userRepository)
+    public AuthController(ISender sender, IUserRepository userRepository)
     {
-        _commandDispatcher = commandDispatcher;
+        _sender = sender;
         _userRepository = userRepository;
     }
 
@@ -36,7 +39,7 @@ public sealed class AuthController : ControllerBase
             request.Password,
             request.ConfirmPassword);
 
-        var result = await _commandDispatcher.SendAsync<RegisterUserCommand, Guid>(command, cancellationToken);
+        var result = await _sender.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -72,7 +75,7 @@ public sealed class AuthController : ControllerBase
             request.Password,
             deviceInfo);
 
-        var result = await _commandDispatcher.SendAsync<LoginCommand, LoginResult>(command, cancellationToken);
+        var result = await _sender.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -105,7 +108,7 @@ public sealed class AuthController : ControllerBase
             request.RefreshToken,
             deviceInfo);
 
-        var result = await _commandDispatcher.SendAsync<RefreshTokenCommand, TokenRefreshResult>(command, cancellationToken);
+        var result = await _sender.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {
@@ -137,7 +140,7 @@ public sealed class AuthController : ControllerBase
             request.DisplayName,
             deviceInfo);
 
-        var result = await _commandDispatcher.SendAsync<CreateGuestCommand, GuestCreationResult>(command, cancellationToken);
+        var result = await _sender.Send(command, cancellationToken);
 
         if (!result.IsSuccess)
         {

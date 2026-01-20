@@ -1,16 +1,15 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Popsies.Modules.Identity.Core.Handlers;
-using Popsies.Modules.Identity.Core.Repositories;
-using Popsies.Modules.Identity.Core.Services;
+using Popsies.Modules.Identity.Application.Common.Repositories;
+using Popsies.Modules.Identity.Application.Common.Services;
+using Popsies.Modules.Identity.Application.UseCases.Register;
 using Popsies.Modules.Identity.Infrastructure.Persistence;
 using Popsies.Modules.Identity.Infrastructure.Persistence.Repositories;
 using Popsies.Modules.Identity.Infrastructure.Services;
-using Popsies.Shared.Abstractions.Commands;
 using Popsies.Shared.Abstractions.Persistence;
-using Popsies.Shared.Infrastructure.Commands;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Popsies.Modules.Identity.Api;
 
@@ -44,14 +43,14 @@ public static class Extensions
         // Keycloak Service
         services.AddScoped<IKeycloakService, KeycloakService>();
 
-        // Command Handlers
-        services.AddScoped<ICommandHandler<Core.Commands.RegisterUserCommand, Guid>, RegisterUserCommandHandler>();
-        services.AddScoped<ICommandHandler<Core.Commands.LoginCommand, Core.Commands.LoginResult>, LoginCommandHandler>();
-        services.AddScoped<ICommandHandler<Core.Commands.RefreshTokenCommand, Core.Commands.TokenRefreshResult>, RefreshTokenCommandHandler>();
-        services.AddScoped<ICommandHandler<Core.Commands.CreateGuestCommand, Core.Commands.GuestCreationResult>, CreateGuestCommandHandler>();
+        // MediatR (auto-registers all IRequestHandler implementations)
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly);
+        });
 
-        // Command Dispatcher
-        services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+        // FluentValidation validators
+        services.AddValidatorsFromAssembly(typeof(Extensions).Assembly);
 
         // Unit of Work
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<IdentityDbContext>());

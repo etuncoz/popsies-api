@@ -1,13 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Popsies.Modules.Session.Core\Popsies.Modules.Session.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Session.Application\Popsies.Modules.Session.Application.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Session.Domain\Popsies.Modules.Session.Domain.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="16.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,11 +21,5 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
 
 </Project>

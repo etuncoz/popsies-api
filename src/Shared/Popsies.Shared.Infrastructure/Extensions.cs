@@ -1,8 +1,10 @@
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Popsies.Shared.Abstractions.Caching;
 using Popsies.Shared.Abstractions.Events;
 using Popsies.Shared.Abstractions.Time;
+using Popsies.Shared.Infrastructure.Behaviors;
 using Popsies.Shared.Infrastructure.Caching;
 using Popsies.Shared.Infrastructure.Events;
 using Popsies.Shared.Infrastructure.Time;
@@ -23,6 +25,10 @@ public static class Extensions
 
         // Event bus
         services.AddSingleton<IEventBus, InMemoryEventBus>();
+
+        // MediatR pipeline behaviors (used by all modules)
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
 
         // Redis cache
         var redisConnection = configuration["Redis:ConnectionString"] ?? "localhost:6379";

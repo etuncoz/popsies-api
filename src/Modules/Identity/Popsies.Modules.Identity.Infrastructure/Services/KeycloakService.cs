@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
-using Popsies.Modules.Identity.Core.Services;
+using Popsies.Modules.Identity.Application.Common.Services;
 
 namespace Popsies.Modules.Identity.Infrastructure.Services;
 

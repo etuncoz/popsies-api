@@ -1,7 +1,8 @@
 using FluentAssertions;
-using Popsies.Modules.Identity.Core.Domain.Aggregates;
-using Popsies.Modules.Identity.Core.Domain.Events;
-using Popsies.Modules.Identity.Core.Domain.ValueObjects;
+using Popsies.Modules.Identity.Domain.Users;
+using Popsies.Modules.Identity.Domain.Users.Events;
+using Popsies.Modules.Identity.Domain.Guests.Events;
+using Popsies.Modules.Identity.Domain.ValueObjects;
 using Popsies.Shared.Abstractions.Results;
 
 namespace Popsies.Modules.Identity.Tests.Unit.Unit.Domain.Aggregates;

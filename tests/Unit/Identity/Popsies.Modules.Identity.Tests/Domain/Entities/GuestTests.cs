@@ -1,6 +1,9 @@
 using FluentAssertions;
-using Popsies.Modules.Identity.Core.Domain.Entities;
-using Popsies.Modules.Identity.Core.Domain.Events;
+using Popsies.Modules.Identity.Domain.Accounts;
+using Popsies.Modules.Identity.Domain.Guests;
+using Popsies.Modules.Identity.Domain.RefreshTokens;
+using Popsies.Modules.Identity.Domain.Users.Events;
+using Popsies.Modules.Identity.Domain.Guests.Events;
 using Popsies.Shared.Abstractions.Results;
 
 namespace Popsies.Modules.Identity.Tests.Unit.Domain.Entities;

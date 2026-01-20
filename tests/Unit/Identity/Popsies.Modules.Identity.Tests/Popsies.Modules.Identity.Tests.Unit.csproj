@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Modules\Identity\Popsies.Modules.Identity.Core\Popsies.Modules.Identity.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Modules\Identity\Popsies.Modules.Identity.Domain\Popsies.Modules.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Modules\Identity\Popsies.Modules.Identity.Application\Popsies.Modules.Identity.Application.csproj" />
   </ItemGroup>
 
 </Project>

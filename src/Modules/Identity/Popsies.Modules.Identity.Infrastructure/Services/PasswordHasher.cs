@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Popsies.Modules.Identity.Core.Services;
+using Popsies.Modules.Identity.Application.Common.Services;
 
 namespace Popsies.Modules.Identity.Infrastructure.Services;
 

@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Npgsql;
-using Popsies.Modules.Identity.Core.Domain.Aggregates;
-using Popsies.Modules.Identity.Core.Domain.Entities;
+using Popsies.Modules.Identity.Domain.Accounts;
+using Popsies.Modules.Identity.Domain.Guests;
+using Popsies.Modules.Identity.Domain.RefreshTokens;
+using Popsies.Modules.Identity.Domain.Users;
 using Popsies.Shared.Abstractions.Domain;
 using Popsies.Shared.Abstractions.Events;
 using Popsies.Shared.Abstractions.Persistence;

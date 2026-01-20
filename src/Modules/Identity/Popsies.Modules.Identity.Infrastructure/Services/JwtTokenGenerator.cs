@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Popsies.Modules.Identity.Core.Services;
+using Popsies.Modules.Identity.Application.Common.Services;
 
 namespace Popsies.Modules.Identity.Infrastructure.Services;
 

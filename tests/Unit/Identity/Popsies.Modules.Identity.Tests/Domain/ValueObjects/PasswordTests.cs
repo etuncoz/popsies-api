@@ -1,5 +1,5 @@
 using FluentAssertions;
-using Popsies.Modules.Identity.Core.Domain.ValueObjects;
+using Popsies.Modules.Identity.Domain.ValueObjects;
 using Popsies.Shared.Abstractions.Results;
 
 namespace Popsies.Modules.Identity.Tests.Unit.Domain.ValueObjects;

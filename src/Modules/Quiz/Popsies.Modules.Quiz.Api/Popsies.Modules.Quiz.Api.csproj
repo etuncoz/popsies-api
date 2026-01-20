@@ -1,11 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Popsies.Modules.Quiz.Core\Popsies.Modules.Quiz.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Quiz.Application\Popsies.Modules.Quiz.Application.csproj" />
     <ProjectReference Include="..\Popsies.Modules.Quiz.Infrastructure\Popsies.Modules.Quiz.Infrastructure.csproj" />
     <ProjectReference Include="..\Popsies.Modules.Quiz.Contracts\Popsies.Modules.Quiz.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
   </ItemGroup>
 
   <PropertyGroup>

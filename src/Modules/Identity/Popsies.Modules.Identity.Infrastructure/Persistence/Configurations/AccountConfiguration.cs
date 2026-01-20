@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Popsies.Modules.Identity.Core.Domain.Entities;
-using Popsies.Modules.Identity.Core.Domain.Enums;
+using Popsies.Modules.Identity.Domain.Accounts;
 
 namespace Popsies.Modules.Identity.Infrastructure.Persistence.Configurations;
 

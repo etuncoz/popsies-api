@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Popsies.Modules.Quiz.Core\Popsies.Modules.Quiz.Core.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Quiz.Application\Popsies.Modules.Quiz.Application.csproj" />
+    <ProjectReference Include="..\Popsies.Modules.Quiz.Domain\Popsies.Modules.Quiz.Domain.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Abstractions\Popsies.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Shared\Popsies.Shared.Infrastructure\Popsies.Shared.Infrastructure.csproj" />
   </ItemGroup>

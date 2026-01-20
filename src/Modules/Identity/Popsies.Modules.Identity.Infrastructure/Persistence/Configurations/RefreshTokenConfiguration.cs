@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Popsies.Modules.Identity.Core.Domain.Entities;
+using Popsies.Modules.Identity.Domain.RefreshTokens;
 
 namespace Popsies.Modules.Identity.Infrastructure.Persistence.Configurations;
 

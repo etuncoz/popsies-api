@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Popsies.Modules.Identity.Core.Domain.Aggregates;
-using Popsies.Modules.Identity.Core.Domain.ValueObjects;
-using Popsies.Modules.Identity.Core.Repositories;
+using Popsies.Modules.Identity.Application.Common.Repositories;
+using Popsies.Modules.Identity.Domain.Users;
+using Popsies.Modules.Identity.Domain.ValueObjects;
 
 namespace Popsies.Modules.Identity.Infrastructure.Persistence.Repositories;
 

@@ -1,5 +1,7 @@
 using FluentAssertions;
-using Popsies.Modules.Identity.Core.Domain.Entities;
+using Popsies.Modules.Identity.Domain.Accounts;
+using Popsies.Modules.Identity.Domain.Guests;
+using Popsies.Modules.Identity.Domain.RefreshTokens;
 using Popsies.Shared.Abstractions.Exceptions;
 using Popsies.Shared.Abstractions.Results;
 
